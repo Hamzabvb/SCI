@@ -7,7 +7,8 @@ const char* ssid = "Rio"; //ssid of your wifi
 const char* password = "hamza5620"; //password of your wifi
 float latitude , longitude;
 int year , month , date, hour , minute , second;
-String date_str , time_str , lat_str , lng_str;
+String date_str , time_str , lat_str , lng_str, lat_str2, lng_str2;
+int distance_left := 0;
 int pm;
 WiFiServer server(80);
 
@@ -124,20 +125,26 @@ void loop()
   s += " ALIGN=CENTER> GPS DATA</h1>";
   s += "<p ALIGN=CENTER style=""font-size:150%;""";
   s += "> <b>Location Details</b></p> <table ALIGN=CENTER style=";
-  s += "width:50%";
-  s += "> <tr> <th>Latitude</th>";
+  s += "width:50% >";
+  s += "<form> <label for="lat_str2">Latitude  de point B:</label><br>";
+  s += "<input type="text" id="lat_str2" name="lat_str2"><br>";
+  s += "<label for="lng_str2">Longitude de point B:</label><br>";
+  s += "<input type="text" id="lng_str2" name="lng_str2">";
+  s += "<input type="submit" value="Submit">";
+  s += "</form> ";
+  s += "<tr> <th>Latitude</th>";
   s += "<td ALIGN=CENTER >";
   s += lat_str;
   s += "</td> </tr> <tr> <th>Longitude</th> <td ALIGN=CENTER >";
   s += lng_str;
+  s += "</td> </tr> <tr> <th>Distance left</th> <td ALIGN=CENTER >";
+  s += distance_left;
   s += "</td> </tr> <tr>  <th>Date</th> <td ALIGN=CENTER >";
   s += date_str;
   s += "</td></tr> <tr> <th>Time</th> <td ALIGN=CENTER >";
   s += time_str;
   s += "</td>  </tr> </table> ";
- 
-  s += "</body> </html>";
-  Serial.println(lat_str);
+  s += "</body> </html> \n";
   client.print(s); // all the values are send to the webpage
   delay(100);
 }
