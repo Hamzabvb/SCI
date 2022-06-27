@@ -8,7 +8,7 @@ const char* password = "hamza5620"; //password of your wifi
 float latitude , longitude;
 int year , month , date, hour , minute , second;
 String date_str , time_str , lat_str , lng_str, lat_str2, lng_str2;
-int distance_left := 0;
+int distance_left = 0;
 int pm;
 WiFiServer server(80);
 
@@ -126,7 +126,7 @@ void loop()
   s += "<p ALIGN=CENTER style=""font-size:150%;""";
   s += "> <b>Location Details</b></p> <table ALIGN=CENTER style=";
   s += "width:50% >";
-  s += "<form> <label for="lat_str2">Latitude  de point B:</label><br>";
+  s += "<form> <label for="+lat_str2+">Latitude  de point B:</label><br>";
   s += "<input type="text" id="lat_str2" name="lat_str2"><br>";
   s += "<label for="lng_str2">Longitude de point B:</label><br>";
   s += "<input type="text" id="lng_str2" name="lng_str2">";
