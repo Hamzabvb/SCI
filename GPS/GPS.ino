@@ -126,12 +126,30 @@ void loop()
   s += "<p ALIGN=CENTER style=""font-size:150%;""";
   s += "> <b>Location Details</b></p> <table ALIGN=CENTER style=";
   s += "width:50% >";
-  s += "<form> <label for="+lat_str2+">Latitude  de point B:</label><br>";
-  s += "<input type="text" id="lat_str2" name="lat_str2"><br>";
-  s += "<label for="lng_str2">Longitude de point B:</label><br>";
-  s += "<input type="text" id="lng_str2" name="lng_str2">";
-  s += "<input type="submit" value="Submit">";
-  s += "</form> ";
+  s += "<form> <label for=";
+  s += "lat_str2";
+  s += ">Latitude  de point B:</label><br>";
+  s += "<input type=";
+  s += text; 
+  s += "id=";
+  s += lat_str2;
+  s += "name=";
+  s += lat_str2;
+  s += "><br>";
+  s += "<label for=";
+  s += lng_str2;
+  s += ">Longitude de point B:</label><br>";
+  s += "<input type=";
+  s += text;
+  s += "id=";
+  s += lng_str2;
+  s += "name=";
+  s += lng_str2;
+  s += "><input type=";
+  s += submit;
+  s += "value=";
+  s += Submit;
+  s += "></form> ";
   s += "<tr> <th>Latitude</th>";
   s += "<td ALIGN=CENTER >";
   s += lat_str;
@@ -148,3 +166,4 @@ void loop()
   client.print(s); // all the values are send to the webpage
   delay(100);
 }
+
