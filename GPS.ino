@@ -8,7 +8,7 @@ const char* password = "hamza5620"; //password of your wifi
 float latitude , longitude;
 int year , month , date, hour , minute , second;
 String date_str , time_str , lat_str , lng_str, lat_str2, lng_str2;
-int distance_left := 0;
+int distance_left = 0;
 int pm;
 WiFiServer server(80);
 
