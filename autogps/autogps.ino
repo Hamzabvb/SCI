@@ -21,7 +21,7 @@ const char* ssid = "Rio"; //ssid of your wifi
 const char* password = "hamza5620"; //password of your wifi
 
 float starting_lat , starting_lng;
-float end_lat=36.717879  , end_lng= 3.153926;
+float end_lat=36.704735 , end_lng= 3.173469;
 double d;
 
 unsigned long previousMillis = 0; const long interval = 2000;  
@@ -49,7 +49,7 @@ void goLeft();
 void stopRobot();
 
 void angleRotation(int angle ,  char side );
-char leftORright();
+void leftORright();
 
 void WifiConnection();
 void PreparehtmlPage();
@@ -92,19 +92,18 @@ void setup() {
  digitalWrite(IN_3, LOW);
  digitalWrite(IN_4, LOW);
 //---------------------------------------------------------
-/*
+
  coordinate = getGpsCoordinate();
  poin = getGpsCoordinate();
  starting_lat= coordinate.lat;
  starting_lng= coordinate.lng;
- */
+
 }
 void loop() {
    coordinate = getGpsCoordinate();
-   goAhead();
-   speedCar=300;
-   delay(4000);
-  unsigned long currentMillis = millis();
+   
+   
+   unsigned long currentMillis = millis();
    
    if (currentMillis - previousMillis >= interval)
    {
@@ -116,69 +115,15 @@ void loop() {
    Serial.print(" distancegps = ");Serial.print(dist);
    Serial.print(" distanc obj = ") ;Serial.println(distance_obstacleCm());
    }
-  Serial.print("distance = ");Serial.println(distance_obstacleCm (),2);
-   if (d>10) {
-   if((distanceCm <= 20)&&(distanceCm>1))
-   {
-    Serial.println("obstacle");
-    stopRobot();
+   //Serial.print(" obj <=> ") ;Serial.println(distanceCm);
+  if (16 > 6)
+  {
    
-    /*angleRotation(90,'l');
-    delay(500);
-    goAhead();
-    speedCar=400;
-    delay(1000);
-    angleRotation(90,'r');
-    delay(500);
-    goAhead();
-    delay(4000);*/
-    leftORright ();
-   }
-   }else{
-    stopRobot();
-   }
-   
-   /*if (d > 10)
-   {
+   angleRotation(90,'l');
+   delay(5000);
     
-      speedCar = 800;
-   goAhead();
-   //if(distance_obstacleCm()<= 70)
-   //{
-   // speedCar = 400 ;
-  // }else{
+  }
    
-   if(distance_obstacleCm()<= 10)
-   {
-    stopRobot();
-    side = leftORright();
-    t=0;
-    goAhead();
-    delay(2000);
-    t+=2000;
-    
-    angleRotation(90,side=='l'?'r':'l');
-    while(distance_obstacleCm()> 100)
-    {
-      angleRotation(90,side);
-      goAhead();
-      delay(2000);
-      angleRotation(90,side=='l'?'r':'l');
-    }
-    
-      angleRotation(90,side=='l'?'r':'l');
-      goAhead();
-      delay(t);
-      angleRotation(90,side);   
-      goAhead();
-   }
-   
-   }else{
-    stopRobot();
-   }*/
-   
-   
-    
   // Prepare the response
   PreparehtmlPage();
   
@@ -219,50 +164,38 @@ void PreparehtmlPage()
 
 }
 
-char leftORright ()
+void leftORright ()
 {
   int dl , dr;
+  int speedi = speedCar;
   stopRobot();
   speedCar=300;
   angleRotation(90,'l');
   
   dl =  distance_obstacleCm ();
-  delay(800);
-  if (dl>20)
+  if (dl > 60)
   {
-    goAhead();
-    delay(1000);
-    angleRotation(90,'r');
-    goAhead();
-    delay(4000);
-   } else {
-  angleRotation(180,'r');
-  
-  dr= distance_obstacleCm ();
-  delay(800);
-  if (dl>20)
-  {
-    goAhead();
-    delay(1000);
-    angleRotation(90,'l');
-    goAhead();
-    delay(4000);
-   }
-  //angleRotation(180,'r');
-  
-  //}
-  //if (dl<dr)
-  //{
-   // angleRotation(180,'r');
-    //return 'l';
-  //}else{
-   // return 'r';
+    return;
   }
+  angleRotation(180,'r');
+  dr= distance_obstacleCm ();
+  //delay(500);
+  if (dl<dr)
+  {
+    delay(500);
+    angleRotation(180,'r');
+    //return 'l';
+  }else{
+    ;//return 'r';
+  }
+  speedCar = speedi;
 }
 
 void angleRotation(int angle ,  char side )
 {
   stopRobot();
+  int speedi = speedCar;
+  speedCar = 200;  
   //delay(800);
   if((side == 'l')||(side=='L'))
   {
@@ -274,6 +207,7 @@ void angleRotation(int angle ,  char side )
   }
   delay(12.5 * angle);
   stopRobot();
+  speedCar = speedi;
    
 }
 
