@@ -129,8 +129,8 @@ void loop()
   s += "<form> <label for=";
   s += "lat_str2";
   s += ">Latitude  de point B:</label><br>";
-  s += "<input type=";
-  s += text; 
+  s += "<input type=  ";
+  s += "text"; 
   s += "id=";
   s += lat_str2;
   s += "name=";
@@ -140,15 +140,15 @@ void loop()
   s += lng_str2;
   s += ">Longitude de point B:</label><br>";
   s += "<input type=";
-  s += text;
+  s += "text";
   s += "id=";
   s += lng_str2;
   s += "name=";
   s += lng_str2;
   s += "><input type=";
-  s += submit;
+  s += "submit";
   s += "value=";
-  s += Submit;
+  s += "Submit";
   s += "></form> ";
   s += "<tr> <th>Latitude</th>";
   s += "<td ALIGN=CENTER >";
@@ -166,4 +166,3 @@ void loop()
   client.print(s); // all the values are send to the webpage
   delay(100);
 }
-
